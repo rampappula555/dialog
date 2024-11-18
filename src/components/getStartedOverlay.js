@@ -1,4 +1,4 @@
-import cssStyles from './get_started_overlay.module.scss'
+
 import { Dialog,DialogContent,IconButton,Grid, DialogTitle ,useMediaQuery} from "@mui/material"
 import { Close } from "@mui/icons-material"
 import EachHeroTile from "./heroTile";
@@ -52,8 +52,22 @@ sx={{
     borderRadius:'30px'
   },
 }}>
-         <DialogTitle className={cssStyles.getstartViewDialogTitle}>4 Easy Ways to Get Started</DialogTitle>
-    <DialogContent className={cssStyles.getstartViewDialogContent} >
+         <DialogTitle sx={{
+            fontFamily: 'Nunito',
+            fontSize: "36px",
+            fontWeight: 700,
+            lineHeight: "22px",
+            letterSpacing: "0.2px",
+            textAlign: "center",
+            textUnderlinePosition: 'from-font',
+            textDecorationSkipInk: "none",
+            color: "#FE6526",
+         }}>4 Easy Ways to Get Started</DialogTitle>
+    <DialogContent sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    }} >
     <IconButton
             onClick={onClose}
             style={{
@@ -70,7 +84,11 @@ sx={{
             <Close />
           </IconButton>
         {/* <Grid container spacing={3} className='each-grid'> */}
-        <div className={cssStyles.eachHeroTileContainer}>
+        <div style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            rowGap: "8px",
+        }}>
             {
                 items.map((eachItem)=>
                 
