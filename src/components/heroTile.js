@@ -1,95 +1,66 @@
-import { Grid, Typography, Button } from "@mui/material";
+import { Button } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 
-function EachHeroTile(props) {
-  const { title, description, image, buttonText, pageLink } = props.eachItem;
+const EachHeroTile = ({ eachItem }) => {
+  const isMobile = useMediaQuery("(max-width:800px)");
+  const isSmallMobile = useMediaQuery("(max-width:480px)");
 
   return (
-    <Grid item>
-      <div
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        padding: isSmallMobile ? "10px" : "20px",
+        borderRadius: "10px",
+        textAlign: "center",
+        backgroundColor: "#fff",
+      }}
+    >
+      <img
+        src={eachItem.image}
+        alt={eachItem.title}
         style={{
-          height: "auto",
-          width: "100%",
-          maxWidth: "554px",
+          width: isSmallMobile ? "80px" : "100px",
+          height: isSmallMobile ? "80px" : "100px",
+          marginBottom: "16px",
+          borderRadius: "10px",
+          objectFit: "cover",
+        }}
+      />
+      <h3
+        style={{
+          fontSize: isSmallMobile ? "16px" : "20px",
+          fontWeight: "bold",
+          color: "#333",
+          marginBottom: "8px",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            gap: "10px",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
-          }}
-        >
-          <div>
-            <img
-              src={image}
-              alt={title}
-              style={{
-                borderRadius: "50%",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                height: "150px",
-                width: "150px",
-              }}
-            />
-          </div>
-          <div style={{ width: "220px" }}>
-            <Typography
-              sx={{
-                fontFamily: 'Lora',
-                fontSize: "28px",
-                fontStyle: "italic",
-                fontWeight: 400,
-                lineHeight: "36px",
-                textAlign: "left",
-              }}
-              variant="subtitle1"
-              component="div"
-            >
-              {title}
-            </Typography>
-            <Typography
-              sx={{
-                fontFamily: 'Nunito',
-                fontSize: '20px',
-                fontWeight: 600,
-                lineHeight: '30px',
-                textAlign: "left",
-                color: "black",
-              }}
-              variant="body2"
-              color="text.secondary"
-            >
-              {description}
-            </Typography>
-          </div>
-        </div>
-        <div style={{ textAlign: 'center', paddingLeft: '150px' }}>
-          <Button
-            sx={{
-              fontSize: "20px",
-              fontWeight: 700,
-              width: "236px",
-              height: "53px",
-              backgroundColor: "#FFFFFF",
-              color: "#FE6526",
-              borderRadius: "999px",
-              textTransform: "none",
-              border: "4px solid #FE6526",
-              '&:hover': {
-                backgroundColor: "#FFFFFF",
-                color: "#FE6526",
-              },
-            }}
-            href={pageLink}
-          >
-            {buttonText}
-          </Button>
-        </div>
-      </div>
-    </Grid>
+        {eachItem.title}
+      </h3>
+      <p
+        style={{
+          fontSize: isSmallMobile ? "12px" : "14px",
+          color: "#666",
+          marginBottom: "16px",
+        }}
+      >
+        {eachItem.description}
+      </p>
+      <Button
+        variant="contained"
+        color="primary"
+        size="small"
+        style={{
+          backgroundColor: "#FE6526",
+          fontSize: isSmallMobile ? "10px" : "12px",
+        }}
+        href={eachItem.pageLink}
+      >
+        {eachItem.buttonText}
+      </Button>
+    </div>
   );
-}
+};
 
 export default EachHeroTile;
